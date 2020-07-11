@@ -17,15 +17,17 @@ for loc in locales:
 root = tk.Tk()
 root.attributes("-fullscreen", True) 
 
+#Carrega a imagem de fundo
+image=ImageTk.PhotoImage(Image.open(".\mitr4tran.png"))
 
-#image=ImageTk.PhotoImage(Image.open("C:\\Users\\MGuimaraes\\Pictures\\mitr4tran2.png"))
-image=ImageTk.PhotoImage(Image.open("mitr4tran.png"))
+#Grupo de cores que irão varias
 color = ["white", "misty rose", "gray", "cornflower blue", "medium blue",
          "light sky blue", "cyan", "lime green", "gold", 'indian red','salmon','tomato', 'pale violet red'
         , 'light pink','dark orchid', 'SlateBlue1', 'LightBlue1']
 cnt = 0
 colour = 'white'
 canvas = tk.Canvas(root,width=480,height=320,bd=0, highlightthickness=0,background=colour)
+#Posicionamento da imagem e palavras
 canvas.create_image(0,0,anchor='nw',image=image)
 clock_date = canvas.create_text(310, 80, fill=color[0], font=("arial", 22, 'bold'),anchor='center')
 clock_dateweek = canvas.create_text(310, 120, fill=color[0], font=("arial", 32, 'bold'),anchor='center')
@@ -42,13 +44,14 @@ confiaveis = ['www.google.com', 'www.yahoo.com', 'www.bb.com.br']
 temperatura = "Aguardando Conexão"
 report_wea = "Aguardando Conexão"
 
+#Dados do clime
+#Gerar uma api key no site https://api.openweathermap.org para receber as atualizaçoes de clima - gratis ate 1 chamada por segundo
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
 CITY = "Fortaleza"
-API_KEY = "58b2429114c594ec347babf9a1212c9d"
-# upadting the URL
+API_KEY = "Sua Chave Aqui" #Inserir sua chave aqui
 URL = BASE_URL + "appid=" + API_KEY + "&q=" + CITY + "&lang=pt"
-# HTTP request
 
+#Verifica se estamos conectados na internet
 def check_host():
     global confiaveis
     for host in confiaveis:
@@ -63,7 +66,7 @@ def check_host():
         a.close()
         return False
 
-
+#Atualização do Clima
 def getweather():
     result_conn = check_host()
     if result_conn == True:
@@ -81,18 +84,17 @@ def getweather():
             global report , report_wea
             report = data['weather']
             report_wea = report[0]['description'].title()
-            os.system ("sudo /home/pi/disconn.sh")
+            os.system ("sudo /home/pi/disconn.sh") #Apos atualizar, desconecta o bluetooth
     else:
-        # showing the error message
+        #Em caso de falta de conexão, chama arquivo que gera conexão
         os.system ("sudo /home/pi/conn.sh")
         time.sleep(2)
         result_conn = check_host()
         if result_conn == False:
-            os.system ("sudo /home/pi/connSu.sh")
             temperatura = "Pesquisando..."
             report = "Pesquisando..."
     
-
+#Faz a troca da cor a cada minuto no segundo 1
 def getcolor():
     if (int(time.strftime('%S')) == 1):
         if (int(time.strftime('%M'))%1) == 0:
@@ -103,7 +105,6 @@ def getcolor():
             colour = color[cnt]		    
             canvas.configure(background=colour)
               
-
 def update():
     try:        
         colour = color[cnt]
