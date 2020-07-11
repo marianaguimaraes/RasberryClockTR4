@@ -12,3 +12,8 @@ Funcionamento previsto:
 
 Ao terminar o boot do SO, será rodado do sh conn e o script python clock, o sh realiza a conexao com o celular cadastrado e habilita a atualização do relógio e condicoes climaticas. Após isso, a conexao é desfeita e cada minuto a cor de fundo do carro e as informações climaticas mudarao de cor. A cada 15 minutos o sistema se reconecta ao celular para atualização do clima.
 
+Arquivos:
+
+conn e disconn -> abre e fecha a conexao bluetooth
+clock.py -> script que rodo o relogio
+mitr4tran.png -> imagem de fundo com transparencia
