@@ -10,6 +10,7 @@ from   PIL    import Image, ImageTk, ImageDraw
 import time
 import numpy as np
 import os
+import socket
 
 locales = ['pt_BR.utf-8']
 for loc in locales:
@@ -20,7 +21,7 @@ root.attributes("-fullscreen", True)
 #Carrega a imagem de fundo
 image=ImageTk.PhotoImage(Image.open(".\mitr4tran.png"))
 
-#Grupo de cores que irão varias
+#Grupo de cores que irão variar
 color = ["white", "misty rose", "gray", "cornflower blue", "medium blue",
          "light sky blue", "cyan", "lime green", "gold", 'indian red','salmon','tomato', 'pale violet red'
         , 'light pink','dark orchid', 'SlateBlue1', 'LightBlue1']
@@ -38,7 +39,7 @@ clock_clima = canvas.create_text(250, 300, fill=color[0], font=("arial", 22, "bo
 
 canvas.pack()
 
-import socket
+
 
 confiaveis = ['www.google.com', 'www.yahoo.com', 'www.bb.com.br']
 temperatura = "Aguardando Conexão"
