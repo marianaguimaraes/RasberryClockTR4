@@ -19,3 +19,5 @@ conn e disconn -> abre e fecha a conexao bluetooth
 clock.py -> script que rodo o relogio
 
 mitr4tran.png -> imagem de fundo com transparencia
+
+Referencia de leitura pra conexoes bluetooth: https://openaps.readthedocs.io/en/latest/docs/Customize-Iterate/bluetooth-tethering-edison.html#phone-selection-for-bt-tethering
