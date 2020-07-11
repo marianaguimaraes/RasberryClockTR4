@@ -73,15 +73,11 @@ def getweather():
     if result_conn == True:
         response = requests.get(URL)
         if response.status_code == 200:
-            # getting data in the json format
             data = response.json()
-            # getting the main dict block
             main = data['main']
-            # getting temperature
             global temperature, temperatura
-            temperature = format(main['temp'] - 273.15,'.1f') + "°C"   
+            temperature = format(main['temp'] - 273.15,'.1f') + "°C"   #Passa pra Celsius
             temperatura = temperature
-            # weather report
             global report , report_wea
             report = data['weather']
             report_wea = report[0]['description'].title()
