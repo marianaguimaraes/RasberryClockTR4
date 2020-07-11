@@ -15,5 +15,7 @@ Ao terminar o boot do SO, será rodado do sh conn e o script python clock, o sh 
 Arquivos:
 
 conn e disconn -> abre e fecha a conexao bluetooth
+
 clock.py -> script que rodo o relogio
+
 mitr4tran.png -> imagem de fundo com transparencia
