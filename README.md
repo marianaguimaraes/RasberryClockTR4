@@ -24,4 +24,5 @@ Referencia de leitura pra conexoes bluetooth: https://openaps.readthedocs.io/en/
 
 
 Produto final:
-<img src=“https://github.com/marianaguimaraes/RasberryClockTR4/blob/master/relogioTR4.jpg”>
+![Image of Yaktocat](https://github.com/marianaguimaraes/RasberryClockTR4/blob/master/relogioTR4.jpg)
+
