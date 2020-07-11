@@ -44,12 +44,13 @@ canvas.pack()
 confiaveis = ['www.google.com', 'www.yahoo.com', 'www.bb.com.br']
 temperatura = "Aguardando Conexão"
 report_wea = "Aguardando Conexão"
+confirmaWea = False 
 
 #Dados do clime
 #Gerar uma api key no site https://api.openweathermap.org para receber as atualizaçoes de clima - gratis ate 1 chamada por segundo
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
 CITY = "Fortaleza"
-API_KEY = "Sua Chave Aqui" #Inserir sua chave aqui
+API_KEY = " " #Inserir sua chave aqui
 URL = BASE_URL + "appid=" + API_KEY + "&q=" + CITY + "&lang=pt"
 
 #Verifica se estamos conectados na internet
@@ -82,6 +83,8 @@ def getweather():
             report = data['weather']
             report_wea = report[0]['description'].title()
             os.system ("sudo /home/pi/disconn.sh") #Apos atualizar, desconecta o bluetooth
+            global confirmaWea 
+            confirmaWea = True
     else:
         #Em caso de falta de conexão, chama arquivo que gera conexão
         os.system ("sudo /home/pi/conn.sh")
@@ -99,8 +102,12 @@ def getcolor():
             cnt+=1
             if cnt > 16:
                 cnt = 0
-            colour = color[cnt]		    
+            colour = color[cnt] 
             canvas.configure(background=colour)
+            if(confirmaWea == False):
+                getweather()
+            if cnt < 2:
+                getweather()
               
 def update():
     try:        
@@ -126,18 +133,6 @@ def update():
 
 update()
 root.mainloop()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
 
 # In[ ]:
