@@ -21,3 +21,7 @@ clock.py -> script que rodo o relogio
 mitr4tran.png -> imagem de fundo com transparencia
 
 Referencia de leitura pra conexoes bluetooth: https://openaps.readthedocs.io/en/latest/docs/Customize-Iterate/bluetooth-tethering-edison.html#phone-selection-for-bt-tethering
+
+
+Produto final:
+<img src=“https://github.com/KrisKasprzak/ILI9341_t3_controls 73”>
