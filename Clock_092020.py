@@ -14,29 +14,29 @@ import socket
 import glob
 
 
-#os.system('modprobe w1-gpio')
-#os.system('modprobe w1-therm')
+os.system('modprobe w1-gpio')
+os.system('modprobe w1-therm')
 
-#base_dir = '/sys/bus/w1/devices/'
-#device_folder = glob.glob(base_dir + '28*')[0]
-#device_file = device_folder + '/w1_slave'
-# 
-#def read_temp_raw():
-#    f = open(device_file, 'r')
-#    lines = f.readlines()
-#    f.close()
-#    return lines
-# 
-#def read_temp():
-#    lines = read_temp_raw()
-#    while lines[0].strip()[-3:] != 'YES':
-#        time.sleep(0.2)
-#        lines = read_temp_raw()
-#    equals_pos = lines[1].find('t=')
-#    if equals_pos != -1:
-#        temp_string = lines[1][equals_pos+2:]
-#        temp_c = float(temp_string) / 1000.0
-#        return temp_c
+base_dir = '/sys/bus/w1/devices/'
+device_folder = glob.glob(base_dir + '28*')[0]
+device_file = device_folder + '/w1_slave'
+ 
+def read_temp_raw():
+    f = open(device_file, 'r')
+    lines = f.readlines()
+    f.close()
+    return lines
+ 
+def read_temp():
+    lines = read_temp_raw()
+    while lines[0].strip()[-3:] != 'YES':
+        time.sleep(0.2)
+        lines = read_temp_raw()
+    equals_pos = lines[1].find('t=')
+    if equals_pos != -1:
+        temp_string = lines[1][equals_pos+2:]
+        temp_c = float(temp_string) / 1000.0
+        return temp_c
 
 locales = ['pt_BR.utf-8']
 for loc in locales:
@@ -45,7 +45,7 @@ root = tk.Tk()
 root.attributes("-fullscreen", True) 
 
 #Carrega a imagem de fundo
-image=ImageTk.PhotoImage(Image.open(".\mitr4tran_092020.png"))
+image=ImageTk.PhotoImage(Image.open("mitr4tran_092020.png"))
 
 #Grupo de cores que irão variar
 color = ["white", "misty rose", "gray", "cornflower blue", "medium blue",
@@ -100,7 +100,7 @@ def update():
         color_vel = color[0]
         colour = color[cnt]
         
-        #temperatura = read_temp()
+        temperatura = read_temp()
         if(mot > 95):
             color_mot = color[10]
         if(gas < 25):
@@ -115,7 +115,7 @@ def update():
         week = "%s" % (time.strftime('%d/%m/%Y'))
         hora = time.strftime('%H:%M') # local
         segundo = time.strftime('.%S') # local
-        temperaturas = "%s°C"  % (temperatura)
+        temperaturas = "%.1f°C"  % (temperatura)
         motor = "%s°C" % mot
         percent = "%"
         fuel = "%s%s " % (gas,percent )
@@ -141,7 +141,6 @@ root.mainloop()
 
 
 # In[ ]:
-
 
 
 
